@@ -20,8 +20,7 @@ const displaySports = (sports) =>{
          <h5 class="card-title">${sport.strPlayer}</h5>
          <p class="card-text">${sport.strGender}</p>
          <p class="card-text">${sport.dateBorn}</p>
-         <p class="card-text">${sport.trNationality}</p>
-         <p class="card-text">${sport.strDescriptionEN}</p>
+         <p class="card-text">${sport.strDescriptionEN.slice(0,200)}</p>
          </div>
      </div>`
 
@@ -42,7 +41,7 @@ const loadSportDetail = (idTeam) => {
 const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${idTeam}`
 fetch(url)
 .then(res => res.json())
-.then(data => displaySportDetails(data.player[0]))
+.then(data => displaySportDetails(data.player))
 }
 
 /* Display sport details */
@@ -52,7 +51,7 @@ detailContainer.textContent = '';
 const detailDiv = document.createElement('div');
 detailDiv.classList.add('card');
 detailDiv.innerHTML = `
-            <img src="${sport.strThumb}"     class="card-img-top" alt="..." />
+            <img src="${sport.strThumb}" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">${sport.strPlayer}</h5>
               <p class="card-text">
@@ -65,7 +64,7 @@ detailContainer.appendChild(detailDiv);
 // console.log(sport);
 }
 
-loadSports();
+// loadSports();
 
 
 /* 
