@@ -3,7 +3,7 @@ const loadSports = (search) =>{
 const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${search} `
 fetch(url)
 .then(res => res.json())
-.then(data => displaySports(data.player[0]))
+.then(data => displaySports(data.player))
 }
 
 /* Display data */
@@ -62,7 +62,7 @@ detailDiv.innerHTML = `
             </div>
 `
 detailContainer.appendChild(detailDiv);
-console.log(sport);
+// console.log(sport);
 }
 
 loadSports();
