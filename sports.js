@@ -1,6 +1,6 @@
 /* Load data */
 const loadSports = (search) =>{
-const url = `https://www.thesportsdb.com/api/v1/json/2/allsports.php?s=${search} `
+const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${search} `
 fetch(url)
 .then(res => res.json())
 .then(data => displaySports(data.player[0]))
@@ -39,7 +39,7 @@ searchField.value = ''
 
 /* load sports details */
 const loadSportDetail = (idTeam) => {
-const url = `https://www.thesportsdb.com/api/v1/json/2/allsports.php?i=${idTeam}`
+const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${idTeam}`
 fetch(url)
 .then(res => res.json())
 .then(data => displaySportDetails(data.player[0]))
