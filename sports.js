@@ -15,17 +15,17 @@ const displaySports = (sports) =>{
         sportDiv.classList.add('col');
         sportDiv.innerHTML = `
         <div class = "card" onclick = 'loadSportDetail(${sport.idPlayer})'>
-         <img src="${sport.strThumb}" class="card-img-top" alt="...">
+         <img src="${sport.strThumb ? sport.strThumb:'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg'}" class="card-img-top" alt="player-image">
          <div class="card-body">
          <h5 class="card-title">${sport.strPlayer}</h5>
          <p class="card-text">${sport.strGender}</p>
          <p class="card-text">${sport.dateBorn}</p>
-         <p class="card-text">${sport.strDescriptionEN.slice(0,200)}</p>
+         <p class="card-text">${sport.strDescriptionEN.slice(0,100)}</p>
          </div>
      </div>`
 
      sportContainer.appendChild(sportDiv);
-       console.log(sport);
+      //  console.log(sport);
     });
 }
 /* search field */
@@ -37,11 +37,11 @@ searchField.value = ''
 }
 
 /* load sports details */
-const loadSportDetail = (idTeam) => {
-const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${idTeam}`
+const loadSportDetail = (idPlayer) => {
+const url = `${sport.strThumb ? sport.strThumb:'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg'}`
 fetch(url)
 .then(res => res.json())
-.then(data => displaySportDetails(data.player))
+.then(data => displaySportDetails(data.players))
 }
 
 /* Display sport details */
@@ -51,11 +51,11 @@ detailContainer.textContent = '';
 const detailDiv = document.createElement('div');
 detailDiv.classList.add('card');
 detailDiv.innerHTML = `
-            <img src="${sport.strThumb}" class="card-img-top" alt="..." />
+            <img src="${'display has no image'}" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">${sport.strPlayer}</h5>
               <p class="card-text">
-              ${sport.strDescriptionEN}
+              ${sport.strDescriptionEN.slice(0,100)}
               </p>
               <button class="btn btn-primary">Go somewhere</button>
             </div>
@@ -64,7 +64,7 @@ detailContainer.appendChild(detailDiv);
 // console.log(sport);
 }
 
-// loadSports();
+loadSports('');
 
 
 /* 
