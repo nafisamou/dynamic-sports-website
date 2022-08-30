@@ -1,6 +1,6 @@
 /* Load data */
-const loadSports = (search) =>{
-const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${search} `
+const loadSports = (searchText) =>{
+const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${searchText} `
 fetch(url)
 .then(res => res.json())
 .then(data => displaySports(data.player))
@@ -38,7 +38,7 @@ searchField.value = ''
 
 /* load sports details */
 const loadSportDetail = (idPlayer) => {
-const url = `${sport.strThumb ? sport.strThumb:'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg'}`
+const url = `https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${idPlayer}`
 fetch(url)
 .then(res => res.json())
 .then(data => displaySportDetails(data.players))
@@ -51,7 +51,7 @@ detailContainer.textContent = '';
 const detailDiv = document.createElement('div');
 detailDiv.classList.add('card');
 detailDiv.innerHTML = `
-            <img src="${'display has no image'}" class="card-img-top" alt="..." />
+            <img src="${sport.strThumb ? sport.strThumb:'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg'}" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">${sport.strPlayer}</h5>
               <p class="card-text">
